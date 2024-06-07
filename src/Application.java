@@ -13,7 +13,7 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
 
-        switch (option)
+        switch (option) {
             case 1:
                 storyTeller.getSentenceLetter();
                 break;
