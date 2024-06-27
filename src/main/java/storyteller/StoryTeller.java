@@ -1,8 +1,7 @@
-import java.sql.SQLOutput;
+package storyteller;
+
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,43 +37,46 @@ public class StoryTeller {
         Scanner scanner2 = new Scanner(System.in);
         int option = scanner2.nextInt();
         int countLetter = 0;
-
-        switch (option) {
-            case 1:
-                System.out.println("COUNT LETTERS BY ARRAY");
-                System.out.println("This method was made using a string that is an array of characters and it access "
-                        + "to it through an index.");
-                countLetter = countLetterByArray(sentence, letter.charAt(0));
-                break;
-            case 2:
-                System.out.println("COUNT LETTERS BY FOR EACH");
-                System.out.println("This method was made by using for each, that can be used to navigate through each" +
-                        "one of the list's elements without an index.");
-                countLetter = countLettersByForEach(sentence, letter.charAt(0));
-                break;
-            case 3:
-                System.out.println("COUNT LETTERS BY STREAM FOR EACH");
-                System.out.println("This method was made by using for each with stream, that helps using for each" +
-                        "through streams using lambda expression and simplifying the code. ");
-                countLetter = countLetterByStreamForEach(sentence, letter.charAt(0));
-                break;
-            case 4:
-                System.out.println("COUNT LETTERS BY STREAM");
-                System.out.println("This method was made by using Streams, that is a sequence of data that could be " +
-                        "process faster by using the methods in it, as well was used the lambda expression.");
-                countLetter = (int) countLettersByStream(sentence, letter.charAt(0));
-                break;
-            case 5:
-                System.out.println("COUNT LETTERS BY PATTERN");
-                System.out.println("This method was made by using the pattern along with the regular expressions.");
-                countLetter = countLetterByPattern(sentence, letter.charAt(0));
-                break;
-            default:
-        }
-        String noSpaces = sentence.replaceAll("\\s+", "");
-        int letters = noSpaces.length();
-        System.out.println("The total amount of letters: " + letter + " in the sentence " + sentence + " is "
-                + countLetter + ". And the total of letters in the sentence is " + letters);
+        boolean exit = false;
+        do  {
+            switch (option) {
+                case 1:
+                    System.out.println("COUNT LETTERS BY ARRAY");
+                    System.out.println("This method was made using a string that is an array of characters and it access "
+                            + "to it through an index.");
+                    countLetter = countLetterByArray(sentence, letter.charAt(0));
+                    break;
+                case 2:
+                    System.out.println("COUNT LETTERS BY FOR EACH");
+                    System.out.println("This method was made by using for each, that can be used to navigate through each" +
+                            "one of the list's elements without an index.");
+                    countLetter = countLettersByForEach(sentence, letter.charAt(0));
+                    break;
+                case 3:
+                    System.out.println("COUNT LETTERS BY STREAM FOR EACH");
+                    System.out.println("This method was made by using for each with stream, that helps using for each" +
+                            "through streams using lambda expression and simplifying the code. ");
+                    countLetter = countLetterByStreamForEach(sentence, letter.charAt(0));
+                    break;
+                case 4:
+                    System.out.println("COUNT LETTERS BY STREAM");
+                    System.out.println("This method was made by using Streams, that is a sequence of data that could be " +
+                            "process faster by using the methods in it, as well was used the lambda expression.");
+                    countLetter = (int) countLettersByStream(sentence, letter.charAt(0));
+                    break;
+                case 5:
+                    System.out.println("COUNT LETTERS BY PATTERN");
+                    System.out.println("This method was made by using the pattern along with the regular expressions.");
+                    countLetter = countLetterByPattern(sentence, letter.charAt(0));
+                    break;
+                default:
+                    exit = true;
+            }
+            String noSpaces = sentence.replaceAll("\\s+", "");
+            int letters = noSpaces.length();
+            System.out.println("The total amount of letters: " + letter + " in the sentence " + sentence + " is "
+                    + countLetter + ". And the total of letters in the sentence is " + letters);
+        } while (exit);
     }
 
     // ------------------------- COUNT LETTERS ----------------------------------------------
@@ -135,7 +137,7 @@ public class StoryTeller {
 
     // ------------------------- COUNT WORDS ----------------------------------------------
     public void getSentenceAndWord() {
-        System.out.println("Please enter de sentence you want to try: ");
+        System.out.println("Please enter the sentence you want to try: ");
         Scanner scanner = new Scanner(System.in);
         String sentence = scanner.nextLine();
         System.out.println("Please enter the word that you want to verify how many times is in your sentence: ");
@@ -157,18 +159,24 @@ public class StoryTeller {
         switch (option) {
             case 1:
                 System.out.println("COUNT WORDS BY STREAM");
+                System.out.println("In this method stream was used to manage the data flow with string methods");
                 countWord = countWordsByStream(sentence, word);
                 break;
             case 2:
                 System.out.println("COUNT WORDS BY FOR EACH");
+                System.out.println("This method was made using string methods to separate each word and using for each"
+                        + "to iterate each word and compare them to verify if they were equal.");
                 countWord = countWordsByForEach(sentence, word);
                 break;
             case 3:
                 System.out.println("COUNT WORDS BY ARRAY 1");
+                System.out.println("This method was made by transforming the strings into char arrays and iterating" +
+                        "over them simultaneously with with an index for");
                 countWord = countWordsByArray1(sentence, word);
                 break;
             case 4:
                 System.out.println("COUNT WORDS BY ARRAY 2");
+                System.out.println("This method was ");
                 countWord = countWordsByArray2(sentence, word);
                 break;
             case 5:
@@ -181,8 +189,6 @@ public class StoryTeller {
                 + ((countWord > 1) ? " times." : " time"));
     }
 
-    // separar la oracion por palabras
-    // ver que las palabras sean iguales
     public int countWordsByStream(String sentence, String word) {
         long words = Arrays.stream(sentence.trim().split(" "))
                 .filter(w -> w.equals(word)).count();
@@ -201,11 +207,6 @@ public class StoryTeller {
         return counter;
     }
 
-
-    // si la siguiente no coincide entonces volver el indice se vuelve 0
-    // el indice 5 de la oracion no concuerda con el indice 0 de la palabra entonces no se cuenta
-    // el indice 6 de la oracion es igual a el indice 0 de la palabra entonces se compara el indice 7 de la oracion con el indice 1 de la palabra.
-    //
     public int countWordsByArray1(String sentence, String word) {
         char[] sentenceArray = sentence.toCharArray();
         char[] wordArray = word.toCharArray();
@@ -231,9 +232,7 @@ public class StoryTeller {
         }
         return counterWord;
     }
-    // 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 // posiciones
-    // l a u r a   l a u   u  r  r  a  c  a     l  a  u  r  a  // sentence
-    // l a u r a                                               // word
+
     public int countWordsByArray2(String sentence, String word) {
         char[] sentenceArray = sentence.toCharArray();
         char[] wordArray = word.toCharArray();
@@ -258,11 +257,6 @@ public class StoryTeller {
         return counterWord;
     }
 
-    // 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 // posiciones
-    // l a u   l a u r a ; l  a  u  r  a     l  a  u  r  a  s     l  a  u  r  a  l  a  u  r  a     l  a  u  r  a  // sentence
-    // l a u r a   l a u   l  a  u  r  a                                                                                    // word
-    // puedo saber que esta lloviendo porque lo veo o lo oigo
-    //
     public int countWordsByString(String sentence, String word) {
         int counterWord = 0;
 
@@ -278,8 +272,8 @@ public class StoryTeller {
                     }
                 }
                 if (indexWdLetter == word.length()
-                    && indexScLetter -1 == sentence.length() - 1
-                    || sentence.charAt(indexScLetter) == ' ') {
+                        && indexScLetter -1 == sentence.length() - 1
+                        || sentence.charAt(indexScLetter) == ' ') {
                     counterWord++;
                 }
             }
