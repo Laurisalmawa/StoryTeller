@@ -1,6 +1,7 @@
 package com.laurisalmawa.stringapp;
 
 import anagram.Anagram;
+import email.ValidEmail;
 import palindrome.Palindrome;
 import secretchat.SecretChat;
 import storyteller.StoryTeller;
@@ -15,6 +16,7 @@ public class StringsApp {
         Anagram anagram = new Anagram();
         Palindrome palindrome = new Palindrome();
         SecretChat secretChat = new SecretChat();
+        ValidEmail validEmail = new ValidEmail();
         boolean exit = true;
 
         do {
@@ -27,6 +29,7 @@ public class StringsApp {
             System.out.println("3. Verify if the text is a Palindrome");
             System.out.println("4. Verify if the text is an Anagram");
             System.out.println("5. To get the secret chat");
+            System.out.println("6. To verify an email");
             System.out.println("Any other letter to exit");
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
@@ -46,6 +49,10 @@ public class StringsApp {
                     break;
                 case 5:
                     secretChat.getText();
+                    break;
+                case 6:
+                    validEmail.getEmail();
+                    break;
                 default:
                     exit = false;
             }

@@ -1,51 +1,104 @@
 package secretchat;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class SecretChat {
+    private Set<Character> alphabetSet = "abcdefghijklmnopqrstuvwxyz".chars()
+            .mapToObj(c -> (char)c)
+            .collect(Collectors.toSet());
+
     public void getText() {
+        System.out.println("Welcome to SECRET CHAT");
         System.out.println("Please enter the text you want to use as secret chat:");
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine();
+        System.out.println("What would you like to do?");
+        System.out.println("1. Encrypt the message");
+        System.out.println("2. Decrypt the message");
+        Scanner scanner1 = new Scanner(System.in);
+        int option = scanner1.nextInt();
         SecretChat secretChat = new SecretChat();
-        secretChat.nextLettersByList(text);
+
+        switch (option) {
+            case 1:
+                System.out.println("What method would you like to use");
+                System.out.println("1.Encrypt");
+                System.out.println("2.Encrypt 2");
+                Scanner scanner2 = new Scanner(System.in);
+                int option1 = scanner2.nextInt();
+
+                switch (option1) {
+                    case 1:
+                        System.out.println(secretChat.encrypt(text));
+                        break;
+                    case 2:
+                        System.out.println(secretChat.encrypt2(text));
+                }
+                break;
+            case 2:
+                System.out.println("What method would you like to use");
+                System.out.println("1.Encrypt");
+                System.out.println("2.Encrypt 2");
+                Scanner scanner3 = new Scanner(System.in);
+                int option2 = scanner3.nextInt();
+
+                switch (option2) {
+                    case 1:
+                        System.out.println(secretChat.decrypt(text));
+                        break;
+                    case 2:
+                        System.out.println(secretChat.decrypt2(text));
+                }
+                break;
+        }
+
     }
 
-    public void nextLetters(String text) {
+    public String encrypt(String text) {
         char[] textChar = text.toCharArray();
-        String alphabet = "abcdefghijklmnopqrstuvwxyza";
-        for (int index = 0; index < text.length(); index++) {
-            char textLetter = textChar[index];
-            for (int indexAlphabet = 0; indexAlphabet < alphabet.length(); indexAlphabet++) {
-                char alphabetChar = alphabet.charAt(indexAlphabet);
-                if (textLetter == ' ') {
-                    break;
-                } else if (textLetter == alphabetChar) {
-                    textChar[index] = alphabet.charAt(indexAlphabet+1);
-                    break;
+
+         for (int index = 0; index < text.length(); index++) {
+                if (alphabetSet.contains(textChar[index])) {
+                    textChar[index]++;
                 }
+        }
+        return String.valueOf(textChar);
+    }
+
+    public String decrypt(String text) {
+        char[] textChar = text.toCharArray();
+
+        for (int index = 0; index < text.length(); index++) {
+            if (alphabetSet.contains(textChar[index])) {
+                textChar[index]--;
             }
         }
-        System.out.println(String.valueOf(textChar));
+        return String.valueOf(textChar);
     }
 
-    public void nextLetters2(String text) {
+    public String encrypt2(String text) {
         char[] textChar = text.toCharArray();
-        Pattern pattern = Pattern.compile("[a-z]");
         for (int index = 0; index < text.length(); index++) {
-            char textLetterChar = textChar[index];
-            String textLetterStr = Character.toString(textLetterChar);
-            Matcher matcher = pattern.matcher(textLetterStr);
+            Matcher matcher = Pattern.compile("[a-z]").matcher(String.valueOf(textChar[index]));
             if (matcher.find()) {
                 textChar[index]++;
-
             }
         }
-        System.out.println(String.valueOf(textChar));
+        return String.valueOf(textChar);
+    }
+
+    public String decrypt2(String text) {
+        char[] textChar = text.toCharArray();
+        for (int index = 0; index < text.length(); index++) {
+            Matcher matcher = Pattern.compile("[a-z]").matcher(String.valueOf(textChar[index]));
+            if (matcher.find()) {
+                textChar[index]--;
+            }
+        }
+        return String.valueOf(textChar);
     }
     // Lists: conjuntos con orden y se pueden repetir
     // Sets: conjuntos sin orden que no se pueden repetir
