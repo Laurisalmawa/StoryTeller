@@ -1,5 +1,6 @@
 secretchat/SecretChat.class
-palindrome/Palindrome.class
 storyteller/StoryTeller.class
+palindrome/Palindrome.class
 anagram/Anagram.class
 com/laurisalmawa/stringapp/StringsApp.class
+email/ValidEmail.class
