@@ -1,10 +1,10 @@
 package com.laurisalmawa.stringapp;
 
-import anagram.Anagram;
-import email.ValidEmail;
-import palindrome.Palindrome;
-import secretchat.SecretChat;
-import storyteller.StoryTeller;
+import com.laurisalmawa.stringapp.fuction.anagram.Anagram;
+import com.laurisalmawa.stringapp.fuction.email.ValidEmail;
+import com.laurisalmawa.stringapp.fuction.palindrome.Palindrome;
+import com.laurisalmawa.stringapp.fuction.secretchat.SecretChat;
+import com.laurisalmawa.stringapp.fuction.storyteller.StoryTeller;
 
 import java.util.Scanner;
 

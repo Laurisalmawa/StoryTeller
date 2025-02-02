@@ -1,4 +1,4 @@
-package storyteller;
+package com.laurisalmawa.stringapp.fuction.storyteller;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class StoryTeller {
 
     public void getSentenceLetter() {
+        System.out.println("Count letters:");
         System.out.print("Please enter the sentence that you want to try: ");
         Scanner scanner = new Scanner(System.in);
         String sentence = scanner.nextLine();

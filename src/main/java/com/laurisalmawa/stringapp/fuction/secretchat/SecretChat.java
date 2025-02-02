@@ -1,4 +1,4 @@
-package secretchat;
+package com.laurisalmawa.stringapp.fuction.secretchat;
 
 import java.util.*;
 import java.util.regex.Matcher;

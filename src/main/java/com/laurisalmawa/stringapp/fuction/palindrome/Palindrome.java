@@ -1,4 +1,4 @@
-package palindrome;
+package com.laurisalmawa.stringapp.fuction.palindrome;
 
 import java.util.Scanner;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package anagram;
+package com.laurisalmawa.stringapp.fuction.anagram;
 
 import java.util.ArrayList;
 import java.util.Arrays;

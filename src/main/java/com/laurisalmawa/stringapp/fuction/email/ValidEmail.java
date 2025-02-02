@@ -1,4 +1,4 @@
-package email;
+package com.laurisalmawa.stringapp.fuction.email;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -55,8 +55,8 @@ public class ValidEmail {
     //01234   012345678910111213
     //  0        1
 
-    //email.lastIndexOf(".") = 16 + 1 = 17 -> c
-    //topLevelDomain = email.substring(12) -> 17 | 18 | 19 = com
+    //com.laurisalmawa.stringapp.fuction.email.lastIndexOf(".") = 16 + 1 = 17 -> c
+    //topLevelDomain = com.laurisalmawa.stringapp.fuction.email.substring(12) -> 17 | 18 | 19 = com
     //                                                       012
 
     //emailParts[1].lastIndexOf(".") = 5 -1 = 4 -> l
